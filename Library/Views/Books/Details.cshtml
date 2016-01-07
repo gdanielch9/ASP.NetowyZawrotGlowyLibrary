@@ -23,7 +23,17 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsBorrowed)
+            @if (Model.IsBorrowed)
+            {
+                @Html.DisplayTextFor(model => model.IsBorrowed)
+                // <p>Yep</p>   // if I want to place another text
+            }
+            else
+            {
+                @Html.DisplayTextFor(model => model.IsBorrowed)
+                // <p>Nope</p> 
+            }
+
         </dd>
 
     </dl>
