@@ -23,13 +23,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsBorrowed, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsBorrowed)
                     @Html.ValidationMessageFor(model => model.IsBorrowed, "", new { @class = "text-danger" })
-                </div>
-            </div>
         </div>
 
         <div class="form-group">
