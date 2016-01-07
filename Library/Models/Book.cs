@@ -11,6 +11,6 @@ namespace Library.Models
         public string Title { get; set; }
         public bool IsBorrowed { get; set; }
 
-        public Book() { IsBorrowed = false; }
+        public Book() { IsBorrowed = false; }   // unnecessary
     }
 }
