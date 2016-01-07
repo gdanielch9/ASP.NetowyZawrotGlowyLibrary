@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Status";
+}
+
+<h2>Status</h2>
+
+<dl class="dl-horizontal">
+    @Html.Raw(TempData["Message"])
+</dl>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
