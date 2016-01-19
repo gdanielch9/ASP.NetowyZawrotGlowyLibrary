@@ -12,7 +12,9 @@ namespace Library.Content
 {
     public class BooksController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+
+
+        private ApplicationDbContext db = new ApplicationDbContext(); 
 
         // GET: Books
         public ActionResult Index()
@@ -38,7 +40,24 @@ namespace Library.Content
         // GET: Books/Create
         public ActionResult Create()
         {
+            ViewBag.Genre =  dupa(db.Genres.ToList());
+           // ViewBag.Genre = db.Genres;
             return View();
+        }
+
+
+        public static List<SelectListItem> dupa(List<Genre> genre)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (Genre g in genre)
+            {
+                items.Add(new SelectListItem()
+                {
+                    Text = g.Name,
+                    Value = g.Id.ToString()
+                });
+            }
+            return items;
         }
 
         // POST: Books/Create
@@ -46,7 +65,7 @@ namespace Library.Content
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,IsBorrowed")] Book book)
+        public ActionResult Create(Book book)
         {
             if (ModelState.IsValid)
             {

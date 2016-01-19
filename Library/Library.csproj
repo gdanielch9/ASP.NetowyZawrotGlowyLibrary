@@ -174,12 +174,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601061835554_InitialCreate.cs" />
+    <Compile Include="Migrations\201601061835554_InitialCreate.Designer.cs">
+      <DependentUpon>201601061835554_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601121838277_GenreAdded.cs" />
+    <Compile Include="Migrations\201601121838277_GenreAdded.Designer.cs">
+      <DependentUpon>201601121838277_GenreAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601121941119_Nie wiem o co chodzi.cs" />
+    <Compile Include="Migrations\201601121941119_Nie wiem o co chodzi.Designer.cs">
+      <DependentUpon>201601121941119_Nie wiem o co chodzi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Genres1Controller.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -241,6 +256,11 @@
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Books\Status.cshtml" />
+    <Content Include="Views\Genres1\Create.cshtml" />
+    <Content Include="Views\Genres1\Delete.cshtml" />
+    <Content Include="Views\Genres1\Details.cshtml" />
+    <Content Include="Views\Genres1\Edit.cshtml" />
+    <Content Include="Views\Genres1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,6 +272,17 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601061835554_InitialCreate.resx">
+      <DependentUpon>201601061835554_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601121838277_GenreAdded.resx">
+      <DependentUpon>201601121838277_GenreAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601121941119_Nie wiem o co chodzi.resx">
+      <DependentUpon>201601121941119_Nie wiem o co chodzi.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
