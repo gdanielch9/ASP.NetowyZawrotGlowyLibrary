@@ -264,6 +264,7 @@
     <Content Include="Views\Genres1\Delete.cshtml" />
     <Content Include="Views\Genres1\Edit.cshtml" />
     <Content Include="Views\Genres1\Index.cshtml" />
+    <Content Include="Views\Books\MyBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

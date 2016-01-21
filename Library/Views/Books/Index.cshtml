@@ -41,14 +41,15 @@
             @Html.ActionLink("Status", "Status", new { id = item.Id }) 
             @if (User.Identity.IsAuthenticated)
             {
-                <text> | </text>
                 if (item.IsBorrowed && User.Identity.GetUserId() == item.UserId)
-                { 
-                @Html.ActionLink("Return", "Return", new { id = item.Id })
+                {
+                    <text> | </text>
+                    @Html.ActionLink("Return", "Return", new { id = item.Id })
                 }
                 else if (!item.IsBorrowed)
-                { 
-                @Html.ActionLink("Borrow", "Borrow", new { id = item.Id })
+                {
+                    <text> | </text>
+                    @Html.ActionLink("Borrow", "Borrow", new { id = item.Id })
                 }
             }
         </td>

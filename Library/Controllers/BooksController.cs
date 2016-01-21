@@ -164,6 +164,12 @@ namespace Library.Content
             return View();
         }
 
+        [Authorize]
+        public ActionResult MyBooks()
+        {
+            return View(db.Books.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
