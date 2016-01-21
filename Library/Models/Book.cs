@@ -16,6 +16,10 @@ namespace Library.Models
         public int? GenreId { get; set; }
         public virtual Genre Genre { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public Book() { IsBorrowed = false; }   // unnecessary
     }
 }

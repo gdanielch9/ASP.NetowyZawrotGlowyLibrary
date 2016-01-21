@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201601121941119_Nie wiem o co chodzi.Designer.cs">
       <DependentUpon>201601121941119_Nie wiem o co chodzi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601211104332_Users.cs" />
+    <Compile Include="Migrations\201601211104332_Users.Designer.cs">
+      <DependentUpon>201601211104332_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -258,7 +262,6 @@
     <Content Include="Views\Books\Status.cshtml" />
     <Content Include="Views\Genres1\Create.cshtml" />
     <Content Include="Views\Genres1\Delete.cshtml" />
-    <Content Include="Views\Genres1\Details.cshtml" />
     <Content Include="Views\Genres1\Edit.cshtml" />
     <Content Include="Views\Genres1\Index.cshtml" />
   </ItemGroup>
@@ -282,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601121941119_Nie wiem o co chodzi.resx">
       <DependentUpon>201601121941119_Nie wiem o co chodzi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601211104332_Users.resx">
+      <DependentUpon>201601211104332_Users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

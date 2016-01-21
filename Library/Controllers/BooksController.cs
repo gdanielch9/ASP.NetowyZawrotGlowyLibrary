@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Library.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Library.Content
 {
@@ -40,13 +41,13 @@ namespace Library.Content
         // GET: Books/Create
         public ActionResult Create()
         {
-            ViewBag.Genre =  dupa(db.Genres.ToList());
+            ViewBag.Genre = ToSelectList(db.Genres.ToList());
            // ViewBag.Genre = db.Genres;
             return View();
         }
 
 
-        public static List<SelectListItem> dupa(List<Genre> genre)
+        public static List<SelectListItem> ToSelectList(List<Genre> genre)
         {
             List<SelectListItem> items = new List<SelectListItem>();
             foreach (Genre g in genre)
@@ -104,6 +105,7 @@ namespace Library.Content
         }
 
         // GET: Ksiazka/Borrow/5
+        [Authorize]
         public ActionResult Borrow(int? id)
         {
             if (id == null)
@@ -116,12 +118,14 @@ namespace Library.Content
                 return HttpNotFound();
             }
             book.IsBorrowed = true;
+            book.UserId = User.Identity.GetUserId();
             db.SaveChanges();        // seve changes in found record 
 
             return RedirectToAction("Index");
         }
 
         // GET: Ksiazka/Return/5
+        [Authorize]
         public ActionResult Return(int? id)
         {
             if (id == null)
