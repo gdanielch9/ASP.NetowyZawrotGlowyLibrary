@@ -167,7 +167,19 @@ namespace Library.Content
         [Authorize]
         public ActionResult MyBooks()
         {
-            return View(db.Books.ToList());
+            string s = User.Identity.GetUserId();
+            return View(db.Books.Where(x => x.UserId == s).ToList());
+        }
+        [HttpPost]
+       public ActionResult SearchTitle(string ModelSearch)
+        {
+            //return RedirectToAction("Index");
+            if (String.IsNullOrEmpty(ModelSearch))
+                return RedirectToAction("Index"); 
+            else
+                return View("Index", db.Books.Where(x => x.Title.ToLower().Contains(ModelSearch.ToLower())).ToList());
+
+
         }
 
         protected override void Dispose(bool disposing)

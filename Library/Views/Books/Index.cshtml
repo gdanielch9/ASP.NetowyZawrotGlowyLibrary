@@ -57,3 +57,10 @@
 }
 
 </table>
+
+@using (Html.BeginForm("SearchTitle", "Books"))
+{
+    <div>What title are you looking for?</div>
+        <div>@Html.TextBox("ModelSearch")</div>
+        <input type="submit" value="Search" />
+}

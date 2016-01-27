@@ -23,8 +23,6 @@
 
     @foreach (var item in Model)
     {
-        if (item.UserId == User.Identity.GetUserId())
-        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
@@ -42,7 +40,6 @@
                     @Html.ActionLink("Return", "Return", new { id = item.Id })
                 </td>
             </tr>
-        }
     }
 
 </table>
