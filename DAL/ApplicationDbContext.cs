@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Library.Models
+namespace DAL
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    //You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -30,8 +30,8 @@ namespace Library.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Library.Models.Book> Books { get; set; }
+        public System.Data.Entity.DbSet<DAL.Models.Book> Books { get; set; }
 
-        public System.Data.Entity.DbSet<Library.Models.Genre> Genres { get; set; }
+        public System.Data.Entity.DbSet<DAL.Models.Genre> Genres { get; set; }
     }
 }

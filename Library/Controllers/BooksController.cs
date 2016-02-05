@@ -8,18 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 using Library.Models;
 using Microsoft.AspNet.Identity;
+//using DAL.Models;
+using BLL;
+using BLL.Models;
+using DAL;
+using DAL.Models;
 
 namespace Library.Content
 {
     public class BooksController : Controller
-    {
-
-
+    {        
         private ApplicationDbContext db = new ApplicationDbContext(); 
-
         // GET: Books
         public ActionResult Index()
         {
+            
+            ViewBag.Genre = ToSelectList(db.Genres.ToList());
             return View(db.Books.ToList());
         }
 
@@ -171,15 +175,21 @@ namespace Library.Content
             return View(db.Books.Where(x => x.UserId == s).ToList());
         }
         [HttpPost]
-       public ActionResult SearchTitle(string ModelSearch)
+       public ActionResult SearchTitle(string searchtitle)
         {
             //return RedirectToAction("Index");
-            if (String.IsNullOrEmpty(ModelSearch))
-                return RedirectToAction("Index"); 
-            else
-                return View("Index", db.Books.Where(x => x.Title.ToLower().Contains(ModelSearch.ToLower())).ToList());
+            if (String.IsNullOrEmpty(searchtitle))
+                return RedirectToAction("Index");
 
+            ViewBag.Genre = ToSelectList(db.Genres.ToList());
+            return View("Index", db.Books.Where(x => x.Title.ToLower().Contains(searchtitle.ToLower())).ToList());
+        }
 
+        [HttpPost]
+        public ActionResult SearchGenre(int searchgenre)
+        {
+            ViewBag.Genre = ToSelectList(db.Genres.ToList());
+            return View("Index", db.Books.Where(x => x.GenreId == searchgenre).ToList());
         }
 
         protected override void Dispose(bool disposing)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Library.Models.Book>
+﻿@model IEnumerable<Library.Models.BookViewModel>
 @using Microsoft.AspNet.Identity
 
 @{
@@ -10,6 +10,24 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p>
+        @using (Html.BeginForm("SearchTitle", "Books"))
+        {
+            <div>
+                What title are you looking for?
+                @Html.TextBox("searchtitle")
+                <input type="submit" value="Search" />
+            </div>
+        }
+
+        @using (Html.BeginForm("SearchGenre", "Books"))
+        {
+            <div>Select genre you are interesting
+             @Html.DropDownList("searchgenre", (IEnumerable<SelectListItem>)ViewBag.Genre)
+            <input type="submit" value="Search" /></div>
+        }
+</p>
+
 <table class="table">
     <tr>
         <th>
@@ -57,10 +75,3 @@
 }
 
 </table>
-
-@using (Html.BeginForm("SearchTitle", "Books"))
-{
-    <div>What title are you looking for?</div>
-        <div>@Html.TextBox("ModelSearch")</div>
-        <input type="submit" value="Search" />
-}
