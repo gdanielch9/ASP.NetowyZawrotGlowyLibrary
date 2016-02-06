@@ -6,42 +6,120 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+<div id="userMessage"></div>
+
+@using (Ajax.BeginForm(new AjaxOptions()
+{
+    UpdateTargetId = "formresult",
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+    OnFailure = "Failure"
+}))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Book</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.DropDownListFor(model => model.GenreId, (IEnumerable<SelectListItem>) ViewBag.Genre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-                    @Html.ValidationMessageFor(model => model.IsBorrowed, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div>
+        @Html.LabelFor(model => model.Title)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.Title)
+        <div>
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    @Html.DropDownListFor(model => model.GenreId, (IEnumerable<SelectListItem>)ViewBag.Genre)
+    <input type="submit" id="SubmitBook" value="Submit" />
+
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@section scripts
+    {
+        <script type="text/javascript">
+            function Success(result) {
+            $("form")[0].reset();
+            $("#userMessage").html(result + " was created properly");
+            //alert(result + " was created properly"); // message in window
+            }
+            function Failure() {
+                $("#userMessage").html("Occured some mistake...");
+            }
+        </script>
+    }
+
+
+@*<form id="bookForm" action="/Books/Create" method="post">
+        <div class="form-horizontal">
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(model => model.Title)
+            @Html.TextBoxFor(model => model.Title)
+
+            @Html.LabelFor(model => model.Genre)
+            @Html.DropDownListFor(model => model.GenreId, (IEnumerable<SelectListItem>)ViewBag.Genre)
+
+            <input type="submit" id="SubmitBook" value="Submit" />
+         </div>
+
+        <span id="msg" style="color:red;" />
+</form>
+
+        <p id="rData">
+        </p>
+
+    @section Scripts{
+        <script type="text/javascript">
+            $('SubmitBook').click(function () {
+
+                var form = $("#bookForm");
+                var url = form.attr("action");
+                var formData = form.serialize();
+                $("form")[0].reset();
+                $.post(url, formData, function (data) {
+                    $("#msg").html("Wiadomość");
+                    
+                });
+                
+            })
+        </script>
+    }*@
+
+@* How it was before Ajax... *@
+    @*@using (Html.BeginForm()) 
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Book</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                       @Html.DropDownListFor(model => model.GenreId, (IEnumerable<SelectListItem>) ViewBag.Genre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                            @Html.ValidationMessageFor(model => model.IsBorrowed, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+    }*@
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

@@ -42,10 +42,28 @@ namespace Library.Content
         public ActionResult Create()
         {
             ViewBag.Genre = ToSelectList(db.Genres.ToList());
-           // ViewBag.Genre = db.Genres;
             return View();
         }
 
+        // POST: Books/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                db.SaveChanges();
+                //return RedirectToAction("Index"); // uncommented if Html.BeginForm in View
+                return Content(book.Title);
+            }
+            else
+                return Content("SHIIIIT");
+            //ViewBag.Genre = ToSelectList(db.Genres.ToList());
+            //return View(book);
+        }
 
         public static List<SelectListItem> ToSelectList(List<Genre> genre)
         {
@@ -61,41 +79,24 @@ namespace Library.Content
             return items;
         }
 
-        // POST: Books/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Books.Add(book);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(book);
-        }
-
         // GET: Books/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Book book = db.Books.Find(id);
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-            return View(book);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Book book = db.Books.Find(id);
+        //    if (book == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(book);
+        //}
 
         // POST: Books/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [/*HttpPost,*/ ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);
@@ -178,5 +179,10 @@ namespace Library.Content
             }
             base.Dispose(disposing);
         }
+        public string TellMeDate()
+        {
+            return DateTime.Now.ToString();
+        }
     }
+
 }

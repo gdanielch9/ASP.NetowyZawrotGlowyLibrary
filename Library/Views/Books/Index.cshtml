@@ -57,3 +57,18 @@
 }
 
 </table>
+
+Click to check actual time
+<input type="submit" value="Button" id="ButtonID" class="btn btn-default" />
+<p id="rData">
+    I am waiting for click...
+</p>
+
+<script type="text/jscript">
+    $('#ButtonID').click(function () {
+        var url = "Books/TellMeDate";
+        $.get(url, null, function (data) {
+            $("#rData").html(data);
+        });
+    })
+</script>
