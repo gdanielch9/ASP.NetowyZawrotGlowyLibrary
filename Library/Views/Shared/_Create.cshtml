@@ -1,0 +1,53 @@
+﻿@model Library.Models.Book
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+    Create new
+</button>
+
+<!-- Modal -->
+@* 'fade' - to make animation *@
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="userMessage"></div>
+
+                @using (Ajax.BeginForm("Create", "Books",new AjaxOptions()
+                {
+                    UpdateTargetId = "formresult",
+                    HttpMethod = "Post",
+                    OnSuccess = "Success",
+                    OnFailure = "Failure"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div>
+                        @Html.LabelFor(model => model.Title)
+                        @Html.TextBoxFor(model => model.Title)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model=>model.Genre)
+                        @Html.DropDownListFor(model => model.GenreId, (IEnumerable<SelectListItem>)ViewBag.Genre)
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary" id="SubmitBook" value="Create" />
+                    </div>
+
+                }
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>*@
+        </div>
+    </div>
+</div>

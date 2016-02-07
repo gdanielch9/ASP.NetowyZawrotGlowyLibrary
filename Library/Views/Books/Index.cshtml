@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.Action("Create")
 </p>
 <table class="table">
     <tr>
@@ -64,7 +64,25 @@ Click to check actual time
     I am waiting for click...
 </p>
 
+@section scripts
+{
 <script type="text/jscript">
+    function Success(result) {
+        $("form")[0].reset();                                       // pro forma
+        $("#userMessage").html(result + " was created properly");   // pro forma
+        setTimeout(function () {
+            $("#createModal").modal('hide').fadeIn('fast');
+            $("#userMessage").html(result + " was created properly").fadeOut('fast');
+        }, 1000);
+        ;
+        //alert(result + " was created properly"); // message in window
+    }
+    function Failure() {
+        $("#userMessage").html("Occured some mistake...");
+        setTimeout(function () {
+            $('#userMessage').fadeOut('fast');
+        }, 1000);
+    }
     $('#ButtonID').click(function () {
         var url = "Books/TellMeDate";
         $.get(url, null, function (data) {
@@ -72,3 +90,4 @@ Click to check actual time
         });
     })
 </script>
+}

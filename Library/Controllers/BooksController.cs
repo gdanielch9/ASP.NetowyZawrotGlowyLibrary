@@ -42,7 +42,8 @@ namespace Library.Content
         public ActionResult Create()
         {
             ViewBag.Genre = ToSelectList(db.Genres.ToList());
-            return View();
+            //return View();
+            return PartialView("_Create");
         }
 
         // POST: Books/Create
