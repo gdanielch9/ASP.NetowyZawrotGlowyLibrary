@@ -10,53 +10,19 @@
 <p>
     @Html.Action("Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsBorrowed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsBorrowed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
-            @Html.ActionLink("Status", "Status", new { id = item.Id }) 
-            @if (User.Identity.IsAuthenticated)
-            {
-                if (item.IsBorrowed && User.Identity.GetUserId() == item.UserId)
-                {
-                    <text> | </text>
-                    @Html.ActionLink("Return", "Return", new { id = item.Id })
-                }
-                else if (!item.IsBorrowed)
-                {
-                    <text> | </text>
-                    @Html.ActionLink("Borrow", "Borrow", new { id = item.Id })
-                }
-            }
-        </td>
-    </tr>
-}
-
-</table>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+<script src="~/Scripts/jquery-2.2.0.js"></script>
+<script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<form id="search-form" method="get" data-ajax="true" data-ajax-target="#booklist-section" data-ajax-update="#booklist-section" >
+    <div> Search Title</div>
+    <input id="SearchQuery" name="searchQuery" placeholder="Enter Title"/>
+    <input type="submit" value="szukaj" />
+</form>
+@Html.Partial("_BookList")
 
 Click to check actual time
 <input type="submit" value="Button" id="ButtonID" class="btn btn-default" />

@@ -18,9 +18,20 @@ namespace Library.Content
         private ApplicationDbContext db = new ApplicationDbContext(); 
 
         // GET: Books
-        public ActionResult Index()
+        public ActionResult Index(string searchQuery = null)
         {
-            return View(db.Books.ToList());
+
+            IEnumerable<Book> bookList;
+
+            if (String.IsNullOrEmpty(searchQuery))
+                bookList = db.Books.ToList();
+            else
+                bookList = db.Books.Where(x => x.Title.ToLower().Contains(searchQuery.ToLower())).ToList();
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_BookList",bookList); 
+
+            return View(bookList);
         }
 
         // GET: Books/Details/5
