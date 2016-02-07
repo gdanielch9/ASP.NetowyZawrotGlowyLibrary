@@ -10,19 +10,15 @@
 <p>
     @Html.Action("Create")
 </p>
-<script src="~/Scripts/bootstrap.js"></script>
-<script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
-<script src="~/Scripts/jquery-2.2.0.js"></script>
-<script src="~/Scripts/jquery-ui-1.11.4.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
 <form id="search-form" method="get" data-ajax="true" data-ajax-target="#booklist-section" data-ajax-update="#booklist-section" >
     <div> Search Title</div>
-    <input id="SearchQuery" name="searchQuery" placeholder="Enter Title"/>
-    <input type="submit" value="szukaj" />
+    <input id="SearchQuery" name="searchQuery" placeholder="Enter Title"/> 
+    <input type="submit" value="Search" />
 </form>
+
 @Html.Partial("_BookList")
+
 
 Click to check actual time
 <input type="submit" value="Button" id="ButtonID" class="btn btn-default" />
@@ -33,25 +29,24 @@ Click to check actual time
 @section scripts
 {
 <script type="text/jscript">
-    function Success(result) {
-        $("form")[0].reset();                                       // pro forma
-        $("#userMessage").html(result + " was created properly");   // pro forma
-        setTimeout(function () {
-            $("#createModal").modal('hide').fadeIn('fast');
-            $("#userMessage").html(result + " was created properly").fadeOut('fast');
+    $('#createButton').click(function () {                          // when "Create New" button was pressed
+        $("#userMessage").html("");                                     // clear message
+    })
+    function Success() {                                            // when new book was properly added
+        $("form")[0].reset();                                           // pro forma, reset poles
+        $("#userMessage").html(" New book was created properly");       // pro forma, show message
+        setTimeout(function () {                                        // hide modal after 1000 seconds
+            $("#createModal").modal('hide').fadeIn('fast');             
         }, 1000);
         ;
-        //alert(result + " was created properly"); // message in window
+        //alert(result + " was created properly");                      // message in separated window
     }
-    function Failure() {
+    function Failure() {                                            // when new book was not properly added
         $("#userMessage").html("Occured some mistake...");
-        setTimeout(function () {
-            $('#userMessage').fadeOut('fast');
-        }, 1000);
     }
-    $('#ButtonID').click(function () {
+    $('#ButtonID').click(function () {                              // when "Button" was added
         var url = "Books/TellMeDate";
-        $.get(url, null, function (data) {
+        $.get(url, null, function (data) {                              // call function fram url and insert to div (or other element) with id = "rData"
             $("#rData").html(data);
         });
     })

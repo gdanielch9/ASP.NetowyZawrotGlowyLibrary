@@ -53,7 +53,6 @@ namespace Library.Content
         public ActionResult Create()
         {
             ViewBag.Genre = ToSelectList(db.Genres.ToList());
-            //return View();
             return PartialView("_Create");
         }
 
@@ -68,13 +67,10 @@ namespace Library.Content
             {
                 db.Books.Add(book);
                 db.SaveChanges();
-                //return RedirectToAction("Index"); // uncommented if Html.BeginForm in View
-                return Content(book.Title);
+                return PartialView("_BookList", db.Books.ToList()); 
             }
             else
                 return Content("SHIIIIT");
-            //ViewBag.Genre = ToSelectList(db.Genres.ToList());
-            //return View(book);
         }
 
         public static List<SelectListItem> ToSelectList(List<Genre> genre)
