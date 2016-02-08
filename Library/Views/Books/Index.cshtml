@@ -17,6 +17,19 @@
     <input type="submit" value="Search" />
 </form>
 
+    @using (Ajax.BeginForm( new AjaxOptions()
+    {
+        UpdateTargetId = "booklist-section",                    // element with id = "booklist-section" will be upgraded asynch (it is in _BookList.cshtml)
+        HttpMethod = "Get",
+    }))
+    {
+    <div>
+        <div>Select genre you are interesting</div>
+        @Html.DropDownList("searchGenreId", (IEnumerable<SelectListItem>)ViewBag.Genre)
+        <input type="submit" value="Search" />
+    </div>
+}
+
 @Html.Partial("_BookList")
 
 

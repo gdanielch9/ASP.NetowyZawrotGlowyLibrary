@@ -18,15 +18,19 @@ namespace Library.Content
         private ApplicationDbContext db = new ApplicationDbContext(); 
 
         // GET: Books
-        public ActionResult Index(string searchQuery = null)
+        public ActionResult Index(string searchQuery = null, int? searchGenreId = null)
         {
 
             IEnumerable<Book> bookList;
+            ViewBag.Genre = ToSelectList(db.Genres.ToList());
 
             if (String.IsNullOrEmpty(searchQuery))
                 bookList = db.Books.ToList();
             else
                 bookList = db.Books.Where(x => x.Title.ToLower().Contains(searchQuery.ToLower())).ToList();
+
+            if (searchGenreId != null)
+                bookList = db.Books.Where(x => x.GenreId == searchGenreId).ToList();
 
             if (Request.IsAjaxRequest())
                 return PartialView("_BookList",bookList); 
