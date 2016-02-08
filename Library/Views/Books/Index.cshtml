@@ -13,7 +13,8 @@
 
 <form id="search-form" method="get" data-ajax="true" data-ajax-target="#booklist-section" data-ajax-update="#booklist-section" >
     <div> Search Title</div>
-    <input id="SearchQuery" name="searchQuery" placeholder="Enter Title"/> 
+                                               @* Action, where books are suggested *@
+    <input id="SearchQuery" name="searchQuery" data-autocomplete-source="@Url.Action("BookSuggestions")" placeholder="Enter Title"/> 
     <input type="submit" value="Search" />
 </form>
 
@@ -42,6 +43,8 @@ Click to check actual time
 @section scripts
 {
 <script type="text/jscript">
+
+
     $('#createButton').click(function () {                          // when "Create New" button was pressed
         $("#userMessage").html("");                                     // clear message
     })
@@ -63,5 +66,25 @@ Click to check actual time
             $("#rData").html(data);
         });
     })
+    
+
+
 </script>
 }
+<script type="text/jscript">
+    var setupAutoComplete = function () {
+        var $input = $("#SearchQuery");
+
+        var options = {
+            source: $input.attr("data-autocomplete-source"),
+            select: function (event, ui) {
+                var $input = $("#SearchQuery");
+                $input.val(ui.item.label);
+                var $form = $input.parents("form:first");
+                $form.submit();
+            }
+        };
+        $input.autocomplete(options)
+    };
+    setupAutoComplete();
+</script>

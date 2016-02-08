@@ -77,6 +77,12 @@ namespace Library.Content
                 return Content("SHIIIIT");
         }
 
+        public ActionResult BookSuggestions(string term)
+        {
+            var bookList = db.Books.Where(x => x.Title.ToLower().Contains(term.ToLower())).ToList();
+            return Json(bookList, JsonRequestBehavior.AllowGet);
+      }
+
         public static List<SelectListItem> ToSelectList(List<Genre> genre)
         {
             List<SelectListItem> items = new List<SelectListItem>();
