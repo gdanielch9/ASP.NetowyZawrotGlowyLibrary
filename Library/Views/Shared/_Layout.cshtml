@@ -3,53 +3,52 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - My Library</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body >
+    <div id="mycontener">
 
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div id="mymenu1">
+                <div>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "mybuttons"})</div>
+                <div> @Html.ActionLink("Books", "Index", "Books", null, new { @class = "mybuttons" })</div>
+                @*<div style="clear:both"></div>*@
+                <div> @Html.ActionLink("My Books", "MyBooks", "Books", null, new { @class = "mybuttons" })</div>
+                <div> @Html.ActionLink("Genres", "Index", "Genres1", null, new { @class = "mybuttons" })</div>
+                @*<div style="clear:both"></div>*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Book", "Index", "Books")</li>
-                    <li>@Html.ActionLink("My Books", "MyBooks", "Books")</li>
-                    <li>@Html.ActionLink("Genres", "Index", "Genres1")</li>
-
-                </ul>
+            <div id="mymenu2">
+                <a href="@Url.Action("Index", "Home", null)">
+                    <img src="~/Content/themes/base/images/ksiazka.png"   style="vertical-align: middle; height:140px"> 
+                </a> 
+            </div>
+            <div id="mymenu3">
                 @Html.Partial("_LoginPartial")
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        <script src="~/Scripts/bootstrap.js"></script>
-        <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
-        <script src="~/Scripts/jquery-2.2.0.js"></script>
-        <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
-        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-        <script src="~/Scripts/jquery.validate.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+            <div style="clear:both"></div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+            <script src="~/Scripts/bootstrap.js"></script>
+            <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+            <script src="~/Scripts/jquery-2.2.0.js"></script>
+            <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+            <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+            <script src="~/Scripts/jquery.validate.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+            <div id="myrenderbody", style="color:white;">
+                @RenderBody()
+            </div>
+
+            <hr />
+            <footer style="color:white;">
+                <p>&copy; @DateTime.Now.Year - Library</p>
+            </footer>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+        </div>
 </body>
 </html>
