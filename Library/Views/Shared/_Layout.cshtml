@@ -4,24 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My Library</title>
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body >
-    <div id="mycontener">
+    <div id="mycontainer">
 
             <div id="mymenu1">
-                <div>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "mybuttons"})</div>
-                <div> @Html.ActionLink("Books", "Index", "Books", null, new { @class = "mybuttons" })</div>
-                @*<div style="clear:both"></div>*@
-                <div> @Html.ActionLink("My Books", "MyBooks", "Books", null, new { @class = "mybuttons" })</div>
-                <div> @Html.ActionLink("Genres", "Index", "Genres1", null, new { @class = "mybuttons" })</div>
-                @*<div style="clear:both"></div>*@
+                <div id="mymenubtn">
+                    @*<div>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "mybuttons" })<i class="icon-home"></i></div>
+                    <div> @Html.ActionLink("Books", "Index", "Books", null, new { @class = "mybuttons" })</div>
+                    @*<div style="clear:both"></div>
+                    <div> @Html.ActionLink("My Books", "MyBooks", "Books", null, new { @class = "mybuttons" })</div>
+                    <div> @Html.ActionLink("Genres", "Index", "Genres1", null, new { @class = "mybuttons" })</div>*@
+                    <div><a id="mybnt1" class="mybuttons" href="/"><i class="icon-home"></i></a></div>
+                    <div> <a id="mybnt2" class="mybuttons" href="/Books"><i class="icon-book"></i></a></div>
+
+                    <div> <a id="mybnt3" class="mybuttons" href="/Books/MyBooks"><i class="icon-star"></i></a></div>
+                    <div> <a id="mybnt4" class="mybuttons" href="/Genres1"><i class="icon-feather"></i></a></div>
+
+                    <div style="clear:both"></div>
+                </div>
+                <div id="mymenuname">
+                    @* Hidden text *@
+                </div>
             </div>
             <div id="mymenu2">
                 <a href="@Url.Action("Index", "Home", null)">
-                    <img src="~/Content/themes/base/images/ksiazka.png"   style="vertical-align: middle; height:140px"> 
+                    <img src="~/Content/themes/base/images/ksiazka.png"   style="vertical-align: middle; color:white; height:100px"> 
                 </a> 
             </div>
             <div id="mymenu3">
@@ -30,14 +42,15 @@
             <div style="clear:both"></div>
 
 
-            <script src="~/Scripts/bootstrap.js"></script>
-            <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
-            <script src="~/Scripts/jquery-2.2.0.js"></script>
-            <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
-            <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-            <script src="~/Scripts/jquery.validate.js"></script>
-            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
             <div id="myrenderbody", style="color:white;">
+                <script src="~/Scripts/bootstrap.js"></script>
+                <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+                <script src="~/Scripts/jquery-2.2.0.js"></script>
+                <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+                <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+                <script src="~/Scripts/jquery.validate.js"></script>
+                <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
                 @RenderBody()
             </div>
 
@@ -46,9 +59,32 @@
                 <p>&copy; @DateTime.Now.Year - Library</p>
             </footer>
 
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
+
         </div>
+
+        <script type="text/jscript">
+            $("#mybnt1").hover(function()
+            {
+                $("#mymenuname").html("Home");
+            })
+            $("#mybnt2").hover(function () {
+                $("#mymenuname").html("Books");
+            })
+            $("#mybnt3").hover(function () {
+                $("#mymenuname").html("My Books");
+            })
+            $("#mybnt4").hover(function () {
+                $("#mymenuname").html("Genres");
+            })
+            $(".mybuttons").mouseleave(function () {
+                $("#mymenuname").html("");
+            })
+
+        </script>   
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

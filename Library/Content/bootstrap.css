@@ -5620,6 +5620,7 @@ body.modal-open,
   display: none;
   overflow: auto;
   overflow-y: scroll;
+    border-radius:30px;
 }
 
 .modal.fade .modal-dialog {

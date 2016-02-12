@@ -1,15 +1,15 @@
 ﻿@model Library.Models.Book
 
 <!-- Button trigger modal -->
-<button type="button" id="createButton" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+<button type="button" id="createButton"  data-toggle="modal" class="ordinarybtn" data-target="#createModal">
     Create new
 </button>
 
 <!-- Modal -->
 @* 'fade' - to make animation, role="dialog" always compulsory *@
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" >
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create new book</h4>
@@ -39,7 +39,7 @@
                         @Html.DropDownListFor(model => model.GenreId, (IEnumerable<SelectListItem>)ViewBag.Genre)
                     </div>
                     <div>
-                            <input type="submit" class="btn btn-primary" id="SubmitBook" value="Create" />
+                            <input type="submit" class="ordinarybtn" id="SubmitBook" value="Create" />
 </div>
 
                 }

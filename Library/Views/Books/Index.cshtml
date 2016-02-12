@@ -5,40 +5,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Books</h2>
+<div class="mycontainer2">   
+    <div id="myundertitle">
+        <div style="float:left; ">
+            <form id="search-form" method="get" data-ajax="true" data-ajax-target="#booklist-section" data-ajax-update="#booklist-section">
+                <div> @*Search Title*@</div>
+                @* Action, where books are suggested *@
+                <input id="SearchQuery" name="searchQuery" data-autocomplete-source="@Url.Action("BookSuggestions")" placeholder="Enter Title" />
+                <input type="submit" value="Search" class="ordinarybtn" />
+            </form>
 
-<p>
-    @Html.Action("Create")
-</p>
+            @using (Ajax.BeginForm(new AjaxOptions()
+            {
+                UpdateTargetId = "booklist-section",                    // element with id = "booklist-section" will be upgraded asynch (it is in _BookList.cshtml)
+                HttpMethod = "Get",
+            }))
+            {
+                <div>
+                    <div>@*Select genre you are interesting*@</div>
+                    @Html.DropDownList("searchGenreId", (IEnumerable<SelectListItem>)ViewBag.Genre)
+                    <input type="submit" value="Search" class="ordinarybtn" style="margin-left:95px" />
+                </div>
+            }
+        </div>
+        <div style="min-height:60px; float:right; display: table; overflow: hidden;">
+            <div style="display: table; display: table-cell;vertical-align: middle;">
+                <div style="margin: 0 auto;">@Html.Action("Create")</div></div></div>
+<div style="clear:both;"></div>
+</div>
+    @Html.Partial("_BookList")
 
-<form id="search-form" method="get" data-ajax="true" data-ajax-target="#booklist-section" data-ajax-update="#booklist-section" >
-    <div> Search Title</div>
-                                               @* Action, where books are suggested *@
-    <input id="SearchQuery" name="searchQuery" data-autocomplete-source="@Url.Action("BookSuggestions")" placeholder="Enter Title"/> 
-    <input type="submit" value="Search" />
-</form>
-
-    @using (Ajax.BeginForm( new AjaxOptions()
-    {
-        UpdateTargetId = "booklist-section",                    // element with id = "booklist-section" will be upgraded asynch (it is in _BookList.cshtml)
-        HttpMethod = "Get",
-    }))
-    {
-    <div>
-        <div>Select genre you are interesting</div>
-        @Html.DropDownList("searchGenreId", (IEnumerable<SelectListItem>)ViewBag.Genre)
-        <input type="submit" value="Search" />
-    </div>
-}
-
-@Html.Partial("_BookList")
-
-
-Click to check actual time
-<input type="submit" value="Button" id="ButtonID" class="btn btn-default" />
-<p id="rData">
-    I am waiting for click...
-</p>
+    @*Click to check actual time
+    <input type="submit" value="Button" id="ButtonID" class="btn btn-default" />
+    <p id="rData">
+        I am waiting for click...
+    </p>*@
+</div>
 
 @section scripts
 {

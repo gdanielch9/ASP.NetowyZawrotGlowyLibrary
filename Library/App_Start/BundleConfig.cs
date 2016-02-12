@@ -26,7 +26,8 @@ namespace Library
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/MyStyles.css"));
+                      "~/Content/MyStyles.css",
+                       "~/Content/fontello/css/fontello.css"));
 
 
         }
