@@ -19,11 +19,11 @@
                     @*<div style="clear:both"></div>
                     <div> @Html.ActionLink("My Books", "MyBooks", "Books", null, new { @class = "mybuttons" })</div>
                     <div> @Html.ActionLink("Genres", "Index", "Genres1", null, new { @class = "mybuttons" })</div>*@
-                    <div><a id="mybnt1" class="mybuttons" href="/"><i class="icon-home"></i></a></div>
-                    <div> <a id="mybnt2" class="mybuttons" href="/Books"><i class="icon-book"></i></a></div>
+                    <div><a id="mybnt1" name ="Home" class="mybuttons" href="/"><i class="icon-home"></i></a></div>
+                    <div> <a id="mybnt2" name ="Books" class="mybuttons" href="/Books"><i class="icon-book"></i></a></div>
 
-                    <div> <a id="mybnt3" class="mybuttons" href="/Books/MyBooks"><i class="icon-star"></i></a></div>
-                    <div> <a id="mybnt4" class="mybuttons" href="/Genres1"><i class="icon-feather"></i></a></div>
+                    <div> <a id="mybnt3" name ="My Books" class="mybuttons" href="/Books/MyBooks"><i class="icon-star"></i></a></div>
+                    <div> <a id="mybnt4" name="Genres" class="mybuttons" href="/Genres1"><i class="icon-feather"></i></a></div>
 
                     <div style="clear:both"></div>
                 </div>
@@ -63,21 +63,11 @@
         </div>
 
         <script type="text/jscript">
-            $("#mybnt1").hover(function()
+            $(".mybuttons").hover(function()
             {
-                $("#mymenuname").html("Home");
-            })
-            $("#mybnt2").hover(function () {
-                $("#mymenuname").html("Books");
-            })
-            $("#mybnt3").hover(function () {
-                $("#mymenuname").html("My Books");
-            })
-            $("#mybnt4").hover(function () {
-                $("#mymenuname").html("Genres");
-            })
-            $(".mybuttons").mouseleave(function () {
-                $("#mymenuname").html("");
+                $("#mymenuname").html($(this).attr("name"));
+            }, function () {
+                $("#mymenuname").empty();
             })
 
         </script>   
