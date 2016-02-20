@@ -17,6 +17,11 @@ namespace Library.Content
 
         private ApplicationDbContext db = new ApplicationDbContext(); 
 
+        public ActionResult Temp()
+        {
+            return PartialView("Temp");
+        }
+
         // GET: Books
         public ActionResult Index(string searchQuery = null, int? searchGenreId = null)
         {
@@ -71,10 +76,14 @@ namespace Library.Content
             {
                 db.Books.Add(book);
                 db.SaveChanges();
-                return PartialView("_BookList", db.Books.ToList()); 
+                return PartialView("_BookList", db.Books.ToList());
+                //return Json(new {success=true});
             }
             else
                 return Content("SHIIIIT");
+            // return PartialView("_BookList", db.Books.ToList()); 
+
+
         }
 
         public ActionResult BookSuggestions(string term)

@@ -18,7 +18,7 @@
 
             @using (Ajax.BeginForm(new AjaxOptions()
             {
-                UpdateTargetId = "booklist-section",                    // element with id = "booklist-section" will be upgraded asynch (it is in _BookList.cshtml)
+                UpdateTargetId = "booklist-section",                    // element with id = "booklist-section" will be upgraded asynch (in _BookList.cshtml)
                 HttpMethod = "Get",
             }))
             {
@@ -31,17 +31,18 @@
         </div>
         <div style="min-height:60px; float:right; display: table; overflow: hidden;">
             <div style="display: table; display: table-cell;vertical-align: middle;">
-                <div style="margin: 0 auto;">@Html.Action("Create")</div></div></div>
+                <div style="margin: 0 auto;">
+                @Html.Action("Create")</div></div></div>
 <div style="clear:both;"></div>
 </div>
     @Html.Partial("_BookList")
-
     @*Click to check actual time
-    <input type="submit" value="Button" id="ButtonID" class="btn btn-default" />
-    <p id="rData">
-        I am waiting for click...
-    </p>*@
+        <input type="submit" value="Button" id="ButtonID" class="btn btn-default" />
+        <p id="rData">
+            I am waiting for click...
+        </p>*@
 </div>
+@*@Html.ModalButton("Temp", "Books","przycisk")*@
 
 @section scripts
 {

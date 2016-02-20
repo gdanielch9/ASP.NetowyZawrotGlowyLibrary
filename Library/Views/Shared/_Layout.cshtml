@@ -6,75 +6,82 @@
     <title>@ViewBag.Title - My Library</title>
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/modernizr")   
+     @Scripts.Render("~/bundles/jquery")
 
 </head>
-<body >
+<body>
     <div id="mycontainer">
 
-            <div id="mymenu1">
-                <div id="mymenubtn">
-                    @*<div>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "mybuttons" })<i class="icon-home"></i></div>
+        <div id="mymenu1">
+            <div id="mymenubtn">
+                @*<div>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "mybuttons" })<i class="icon-home"></i></div>
                     <div> @Html.ActionLink("Books", "Index", "Books", null, new { @class = "mybuttons" })</div>
                     @*<div style="clear:both"></div>
                     <div> @Html.ActionLink("My Books", "MyBooks", "Books", null, new { @class = "mybuttons" })</div>
                     <div> @Html.ActionLink("Genres", "Index", "Genres1", null, new { @class = "mybuttons" })</div>*@
-                    <div><a id="mybnt1" name ="Home" class="mybuttons" href="/"><i class="icon-home"></i></a></div>
-                    <div> <a id="mybnt2" name ="Books" class="mybuttons" href="/Books"><i class="icon-book"></i></a></div>
+                <div><a id="mybnt1" name="Home" class="mybuttons" href="/"><i class="icon-home"></i></a></div>
+                <div> <a id="mybnt2" name="Books" class="mybuttons" href="/Books"><i class="icon-book"></i></a></div>
 
-                    <div> <a id="mybnt3" name ="My Books" class="mybuttons" href="/Books/MyBooks"><i class="icon-star"></i></a></div>
-                    <div> <a id="mybnt4" name="Genres" class="mybuttons" href="/Genres1"><i class="icon-feather"></i></a></div>
+                <div> <a id="mybnt3" name="My Books" class="mybuttons" href="/Books/MyBooks"><i class="icon-star"></i></a></div>
+                <div> <a id="mybnt4" name="Genres" class="mybuttons" href="/Genres1"><i class="icon-feather"></i></a></div>
 
-                    <div style="clear:both"></div>
-                </div>
-                <div id="mymenuname">
-                    @* Hidden text *@
-                </div>
+                <div style="clear:both"></div>
             </div>
-            <div id="mymenu2">
-                <a href="@Url.Action("Index", "Home", null)">
-                    <img src="~/Content/themes/base/images/ksiazka.png"   style="vertical-align: middle; color:white; height:100px"> 
-                </a> 
+            <div id="mymenuname">
+                @* Hidden text *@
             </div>
-            <div id="mymenu3">
-                @Html.Partial("_LoginPartial")
-            </div>
-            <div style="clear:both"></div>
+        </div>
+        <div id="mymenu2">
+            <a href="@Url.Action("Index", "Home", null)">
+                <img src="~/Content/themes/base/images/ksiazka.png" style="vertical-align: middle; color:white; height:100px">
+            </a>
+        </div>
+        <div id="mymenu3">
+            @Html.Partial("_LoginPartial")
+        </div>
+        <div style="clear:both"></div>
 
 
 
-            <div id="myrenderbody", style="color:white;">
-                <script src="~/Scripts/bootstrap.js"></script>
+        <div id="myrenderbody" , style="color:white;">
+            @*<script src="~/Scripts/bootstrap.js"></script>
                 <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
                 <script src="~/Scripts/jquery-2.2.0.js"></script>
                 <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
                 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
                 <script src="~/Scripts/jquery.validate.js"></script>
-                <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-                @RenderBody()
-            </div>
-
-            <hr />
-            <footer style="color:white;">
-                <p>&copy; @DateTime.Now.Year - Library</p>
-            </footer>
-
-
+                <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+            <script src="~/Scripts/ModalWindow.js"></script>
+            @RenderBody()
         </div>
 
-        <script type="text/jscript">
-            $(".mybuttons").hover(function()
-            {
-                $("#mymenuname").html($(this).attr("name"));
-            }, function () {
-                $("#mymenuname").empty();
-            })
+        <hr />
+        <footer style="color:white;">
+            <p>&copy; @DateTime.Now.Year - Library</p>
+        </footer>
 
-        </script>   
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jqueryval")
-    @RenderSection("scripts", required: false)
+    </div>
+    <div class="modal fade" id="modalwindow" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content" id="modalcontent">
+            </div>
+
+            </div></div>
+
+            <script type="text/jscript">
+                $(".mybuttons").hover(function () {
+                    $("#mymenuname").html($(this).attr("name"));
+                }, function () {
+                    $("#mymenuname").empty();
+                })
+
+            </script>
+
+
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/jqueryval")
+            @RenderSection("scripts", required: false)
 </body>
 </html>
